@@ -1,7 +1,11 @@
 <?php
 
 $params = require __DIR__ . '/params.php';
-$db = require __DIR__ . '/db.php';
+if(YII_ENV_DEV) {
+    $db = require __DIR__ . '/db_development.php';
+} else {
+    $db = require __DIR__ . '/db_release.php';
+}
 
 $config = [
     'id' => 'basic-console',
