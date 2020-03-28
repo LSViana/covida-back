@@ -7,10 +7,10 @@ use yii\data\Pagination;
 use yii\filters\auth\HttpBearerAuth;
 use yii\filters\Cors;
 use yii\helpers\ArrayHelper;
-use yii\rest\Controller;
+use yii\rest\ActiveController;
 use yii\web\Response;
 
-class BaseController extends Controller
+class BaseActiveController extends ActiveController
 {
     public function behaviors()
     {

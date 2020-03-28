@@ -19,6 +19,13 @@ use yii2mod\swagger\SwaggerUIRenderer;
  */
 class GeneralController extends BaseController
 {
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        unset($behaviors['authenticator']);
+        return $behaviors;
+    }
+
     public function actions()
     {
         $actions = parent::actions();
@@ -30,8 +37,8 @@ class GeneralController extends BaseController
             'class' => 'yii2mod\swagger\OpenAPIRenderer',
             // Тhe list of directories that contains the swagger annotations.
             'scanDir' => [
-                Yii::getAlias('@app/modules/api/v1/controllers'),
-                Yii::getAlias('@app/modules/api/v1/models'),
+                Yii::getAlias('@app/modules/v1/controllers'),
+                Yii::getAlias('@app/modules/v1/models'),
             ],
         ];
         $actions['error'] = [
@@ -42,10 +49,10 @@ class GeneralController extends BaseController
 
     public function actionIndex()
     {
-        return $this->asJson([
+        return [
             'name' => Yii::$app->controller->module->params['name'],
             'version' => Yii::$app->controller->module->params['version'],
             'docs' => Url::to(['general/docs'], true),
-        ]);
+        ];
     }
 }

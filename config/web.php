@@ -1,6 +1,8 @@
 <?php
 
 use app\modules\v1\ApiModule;
+use app\modules\v1\models\User;
+use yii\rest\UrlRule;
 use yii\web\Request;
 use yii\web\Response;
 use yii\web\UrlManager;
@@ -29,16 +31,19 @@ $config = [
         'request' => [
             'class' => Request::class,
             'cookieValidationKey' => 'thisiscovida2020',
+            'parsers' => [
+                'application/json' => yii\web\JsonParser::class,
+            ]
         ],
         'response' => [
+            'class' => Response::class,
             'format' => Response::FORMAT_JSON,
+        ],
+        'user' => [
+            'identityClass' => User::class,
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
-        ],
-        'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -56,9 +61,15 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [
-                    'class' => 'yii\rest\UrlRule',
-                    'controller' => ['v1/authorization', 'v1/general']
+                    'class' => UrlRule::class,
+                    'controller' => [
+                        'v1/authorization' => 'v1/authorization',
+                        'v1/general' => 'v1/general',
+                        'v1/help' => 'v1/help',
+                        'v1/help-category' => 'v1/help-category',
+                    ],
                 ],
+                'GET v1/help-category/<id>' => 'v1/help-category/view'
             ],
         ],
     ],

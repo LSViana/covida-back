@@ -9,12 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string $datetime
- * @property bool $cancelleddatetime
- * @property string $cancelledreason
+ * @property bool $cancelledDateTime
+ * @property string $cancelledReason
  * @property string $status
- * @property int $userid
+ * @property int $userId
  *
  * @property User $user
+ * @property HelpHasCategory[] $helpHasCategories
  * @property HelpItem[] $helpItems
  * @property Message[] $messages
  */
@@ -34,14 +35,15 @@ class Help extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['datetime', 'cancelleddatetime', 'cancelledreason', 'status', 'userid'], 'required'],
+            [['datetime', 'status', 'userId'], 'required'],
             [['datetime'], 'safe'],
-            [['cancelleddatetime'], 'boolean'],
+            [['cancelledDateTime'], 'boolean'],
             [['status'], 'string'],
-            [['userid'], 'default', 'value' => null],
-            [['userid'], 'integer'],
-            [['cancelledreason'], 'string', 'max' => 64],
-            [['userid'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userid' => 'id']],
+            [['status'], 'in', 'range' => ['awaiting', 'active', 'past', 'cancelled']],
+            [['userId'], 'default', 'value' => null],
+            [['userId'], 'integer'],
+            [['cancelledReason'], 'string', 'max' => 64],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'id']],
         ];
     }
 
@@ -53,10 +55,10 @@ class Help extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'datetime' => 'Datetime',
-            'cancelleddatetime' => 'Cancelleddatetime',
-            'cancelledreason' => 'Cancelledreason',
+            'cancelledDateTime' => 'Cancelled Date Time',
+            'cancelledReason' => 'Cancelled Reason',
             'status' => 'Status',
-            'userid' => 'Userid',
+            'userId' => 'User ID',
         ];
     }
 
@@ -67,7 +69,17 @@ class Help extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'userid']);
+        return $this->hasOne(User::className(), ['id' => 'userId']);
+    }
+
+    /**
+     * Gets query for [[HelpHasCategories]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getHelpHasCategories()
+    {
+        return $this->hasMany(HelpHasCategory::className(), ['helpId' => 'id']);
     }
 
     /**
@@ -77,7 +89,7 @@ class Help extends \yii\db\ActiveRecord
      */
     public function getHelpItems()
     {
-        return $this->hasMany(HelpItem::className(), ['helpid' => 'id']);
+        return $this->hasMany(HelpItem::className(), ['helpId' => 'id']);
     }
 
     /**
@@ -87,6 +99,6 @@ class Help extends \yii\db\ActiveRecord
      */
     public function getMessages()
     {
-        return $this->hasMany(Message::className(), ['helpid' => 'id']);
+        return $this->hasMany(Message::className(), ['helpId' => 'id']);
     }
 }

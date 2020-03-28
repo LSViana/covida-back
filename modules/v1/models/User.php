@@ -2,7 +2,7 @@
 
 namespace app\modules\v1\models;
 
-use Yii;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -12,13 +12,25 @@ use Yii;
  * @property float $lat
  * @property float $lng
  * @property string $address
- * @property bool $isvolunteer
+ * @property bool $isVolunteer
+ * @property string $accessToken
  *
  * @property Help[] $helps
  * @property Message[] $messages
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    public function fields()
+    {
+        $fields = parent::fields();
+        // Remove private fields in operations that aren't related to the login
+        if($this->scenario !== 'login')
+        {
+            unset($fields['accessToken']);
+        }
+        return $fields;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -33,11 +45,12 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'lat', 'lng', 'address', 'isvolunteer'], 'required'],
+            [['name', 'lat', 'lng', 'address', 'isVolunteer'], 'required'],
             [['lat', 'lng'], 'number'],
-            [['isvolunteer'], 'boolean'],
+            [['isVolunteer'], 'boolean'],
             [['name'], 'string', 'max' => 64],
             [['address'], 'string', 'max' => 128],
+            [['accessToken'], 'safe', 'on' => 'login'],
         ];
     }
 
@@ -52,7 +65,8 @@ class User extends \yii\db\ActiveRecord
             'lat' => 'Lat',
             'lng' => 'Lng',
             'address' => 'Address',
-            'isvolunteer' => 'Isvolunteer',
+            'isVolunteer' => 'Is Volunteer',
+            'accessToken' => 'Access Token',
         ];
     }
 
@@ -63,7 +77,7 @@ class User extends \yii\db\ActiveRecord
      */
     public function getHelps()
     {
-        return $this->hasMany(Help::className(), ['userid' => 'id']);
+        return $this->hasMany(Help::className(), ['userId' => 'id']);
     }
 
     /**
@@ -73,6 +87,51 @@ class User extends \yii\db\ActiveRecord
      */
     public function getMessages()
     {
-        return $this->hasMany(Message::className(), ['userid' => 'id']);
+        return $this->hasMany(Message::className(), ['userId' => 'id']);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function findIdentity($id)
+    {
+        return User::findOne(['id' => $id]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function findIdentityByaccesstoken($token, $type = null)
+    {
+        return User::findOne(['accessToken' => $token]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getAuthKey()
+    {
+        return $this->accessToken;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->accessToken === $authKey;
+    }
+
+    public function refreshAccessToken()
+    {
+        $this->accessToken = md5(date('c') . $this->name);
     }
 }

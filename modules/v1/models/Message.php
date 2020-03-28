@@ -11,8 +11,8 @@ use Yii;
  * @property string $datetime
  * @property string $text
  * @property string $status
- * @property int $helpid
- * @property int $userid
+ * @property int $helpId
+ * @property int $userId
  *
  * @property Help $help
  * @property User $user
@@ -33,14 +33,15 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['datetime', 'text', 'status', 'helpid', 'userid'], 'required'],
+            [['datetime', 'text', 'status', 'helpId', 'userId'], 'required'],
             [['datetime'], 'safe'],
             [['status'], 'string'],
-            [['helpid', 'userid'], 'default', 'value' => null],
-            [['helpid', 'userid'], 'integer'],
+            [['status'], 'in', 'range' => ['sent', 'read']],
+            [['helpId', 'userId'], 'default', 'value' => null],
+            [['helpId', 'userId'], 'integer'],
             [['text'], 'string', 'max' => 64],
-            [['helpid'], 'exist', 'skipOnError' => true, 'targetClass' => Help::className(), 'targetAttribute' => ['helpid' => 'id']],
-            [['userid'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userid' => 'id']],
+            [['helpId'], 'exist', 'skipOnError' => true, 'targetClass' => Help::className(), 'targetAttribute' => ['helpId' => 'id']],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'id']],
         ];
     }
 
@@ -54,8 +55,8 @@ class Message extends \yii\db\ActiveRecord
             'datetime' => 'Datetime',
             'text' => 'Text',
             'status' => 'Status',
-            'helpid' => 'Helpid',
-            'userid' => 'Userid',
+            'helpId' => 'Help ID',
+            'userId' => 'User ID',
         ];
     }
 
@@ -66,7 +67,7 @@ class Message extends \yii\db\ActiveRecord
      */
     public function getHelp()
     {
-        return $this->hasOne(Help::className(), ['id' => 'helpid']);
+        return $this->hasOne(Help::className(), ['id' => 'helpId']);
     }
 
     /**
@@ -76,6 +77,6 @@ class Message extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'userid']);
+        return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 }

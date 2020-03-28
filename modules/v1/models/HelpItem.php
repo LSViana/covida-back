@@ -11,7 +11,7 @@ use Yii;
  * @property string $name
  * @property int $amount
  * @property bool $complete
- * @property int $helpid
+ * @property int $helpId
  *
  * @property Help $help
  */
@@ -31,12 +31,13 @@ class HelpItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'amount', 'complete', 'helpid'], 'required'],
-            [['amount', 'helpid'], 'default', 'value' => null],
-            [['amount', 'helpid'], 'integer'],
+            [['name', 'amount', 'complete', 'helpId'], 'required'],
+            [['amount', 'helpId'], 'default', 'value' => null],
+            [['helpId'], 'integer'],
+            [['amount'], 'integer', 'max' => 100, 'min' => 1],
             [['complete'], 'boolean'],
             [['name'], 'string', 'max' => 64],
-            [['helpid'], 'exist', 'skipOnError' => true, 'targetClass' => Help::className(), 'targetAttribute' => ['helpid' => 'id']],
+            [['helpId'], 'exist', 'skipOnError' => true, 'targetClass' => Help::className(), 'targetAttribute' => ['helpId' => 'id']],
         ];
     }
 
@@ -50,7 +51,7 @@ class HelpItem extends \yii\db\ActiveRecord
             'name' => 'Name',
             'amount' => 'Amount',
             'complete' => 'Complete',
-            'helpid' => 'Helpid',
+            'helpId' => 'Help ID',
         ];
     }
 
@@ -61,6 +62,6 @@ class HelpItem extends \yii\db\ActiveRecord
      */
     public function getHelp()
     {
-        return $this->hasOne(Help::className(), ['id' => 'helpid']);
+        return $this->hasOne(Help::className(), ['id' => 'helpId']);
     }
 }
