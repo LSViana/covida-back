@@ -6,8 +6,6 @@ use app\modules\v1\base\BaseController;
 use Yii;
 use yii\helpers\Url;
 use yii\web\ErrorAction;
-use yii\web\Response;
-use yii2mod\swagger\SwaggerUIRenderer;
 
 /**
  * @SWG\Swagger(

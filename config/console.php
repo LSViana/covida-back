@@ -1,5 +1,7 @@
 <?php
 
+use app\websocket\WebSocketBootstrap;
+
 $params = require __DIR__ . '/params.php';
 if(YII_ENV_DEV) {
     $db = require __DIR__ . '/db_development.php';
@@ -8,9 +10,12 @@ if(YII_ENV_DEV) {
 }
 
 $config = [
-    'id' => 'basic-console',
+    'id' => 'covida-back-console',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'websocket'
+    ],
     'controllerNamespace' => 'app\commands',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -20,6 +25,9 @@ $config = [
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
+        ],
+        'websocket' => [
+            'class' => WebSocketBootstrap::class,
         ],
         'log' => [
             'targets' => [

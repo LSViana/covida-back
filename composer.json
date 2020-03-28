@@ -19,7 +19,7 @@
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "yii2mod/yii2-swagger": "*",
-        "yiiplus/yii2-websocket": "^1.0.0"
+        "cboden/ratchet": "^0.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

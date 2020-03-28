@@ -72,7 +72,6 @@ class HelpController extends BaseController
                 }
                 foreach($helpItems as $item) {
                     $item->save();
-
                 }
                 // Return the help with status code 201
                 $this->statusCode(201);
