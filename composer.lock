@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa5e00df74410823d319fa6d4b243838",
+    "content-hash": "f72198f7a77f8bf728b52867ff2b4ead",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -476,7 +476,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.5",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -807,17 +807,61 @@
             "time": "2017-10-19T14:33:59+00:00"
         },
         {
-            "name": "yiisoft/yii2",
-            "version": "2.0.33",
+            "name": "yiiplus/yii2-websocket",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "8c0a329b72b11d938e1cb7e4cabf700139206723"
+                "url": "https://github.com/yiiplus/yii2-websocket.git",
+                "reference": "7098989975ec08d19bb03456a6544e193bc3320d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/8c0a329b72b11d938e1cb7e4cabf700139206723",
-                "reference": "8c0a329b72b11d938e1cb7e4cabf700139206723",
+                "url": "https://api.github.com/repos/yiiplus/yii2-websocket/zipball/7098989975ec08d19bb03456a6544e193bc3320d",
+                "reference": "7098989975ec08d19bb03456a6544e193bc3320d",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yiiplus\\websocket\\": "src",
+                    "yiiplus\\websocket\\swoole\\": "src/drivers/swoole",
+                    "yiiplus\\websocket\\workerman\\": "src/drivers/workerman"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "gengxiankun",
+                    "email": "gengxiankun@126.com"
+                }
+            ],
+            "description": "使用yii2封装 websocket 扩展",
+            "keywords": [
+                "extension",
+                "swoole",
+                "websocket",
+                "yii2"
+            ],
+            "time": "2019-01-30T07:32:09+00:00"
+        },
+        {
+            "name": "yiisoft/yii2",
+            "version": "2.0.34",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-framework.git",
+                "reference": "ef2585379bc387433e150a62451a89a4b1e130d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ef2585379bc387433e150a62451a89a4b1e130d7",
+                "reference": "ef2585379bc387433e150a62451a89a4b1e130d7",
                 "shasum": ""
             },
             "require": {
@@ -904,7 +948,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2020-03-24T20:03:06+00:00"
+            "time": "2020-03-26T20:42:29+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -1287,6 +1331,7 @@
                 "functional testing",
                 "unit testing"
             ],
+            "abandoned": true,
             "time": "2018-02-26T23:42:52+00:00"
         },
         {
@@ -3188,16 +3233,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.4.5",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4fa15ae7be74e53f6ec8c83ed403b97e23b665e9"
+                "reference": "20bc0c1068565103075359f5ce9e0639b36f92d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4fa15ae7be74e53f6ec8c83ed403b97e23b665e9",
-                "reference": "4fa15ae7be74e53f6ec8c83ed403b97e23b665e9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/20bc0c1068565103075359f5ce9e0639b36f92d1",
+                "reference": "20bc0c1068565103075359f5ce9e0639b36f92d1",
                 "shasum": ""
             },
             "require": {
@@ -3260,20 +3305,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-24T13:10:00+00:00"
+            "time": "2020-03-16T08:56:54+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.4.5",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "d0a6dd288fa8848dcc3d1f58b94de6a7cc5d2d22"
+                "reference": "402251c6fd69806a70a2b0e1426d16f8487f0f9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/d0a6dd288fa8848dcc3d1f58b94de6a7cc5d2d22",
-                "reference": "d0a6dd288fa8848dcc3d1f58b94de6a7cc5d2d22",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/402251c6fd69806a70a2b0e1426d16f8487f0f9a",
+                "reference": "402251c6fd69806a70a2b0e1426d16f8487f0f9a",
                 "shasum": ""
             },
             "require": {
@@ -3313,20 +3358,20 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-04T09:01:01+00:00"
+            "time": "2020-03-16T08:56:54+00:00"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v4.4.5",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "11dcf08f12f29981bf770f097a5d64d65bce5929"
+                "reference": "7e7c7957f6d53757d36b61a1f7408ef0b6683040"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/11dcf08f12f29981bf770f097a5d64d65bce5929",
-                "reference": "11dcf08f12f29981bf770f097a5d64d65bce5929",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/7e7c7957f6d53757d36b61a1f7408ef0b6683040",
+                "reference": "7e7c7957f6d53757d36b61a1f7408ef0b6683040",
                 "shasum": ""
             },
             "require": {
@@ -3374,20 +3419,20 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-29T10:05:28+00:00"
+            "time": "2020-03-16T11:24:17+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.4.5",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "4ad8e149799d3128621a3a1f70e92b9897a8930d"
+                "reference": "cf57788d1ca64ee7e689698dc0295d25c9fe3780"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/4ad8e149799d3128621a3a1f70e92b9897a8930d",
-                "reference": "4ad8e149799d3128621a3a1f70e92b9897a8930d",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/cf57788d1ca64ee7e689698dc0295d25c9fe3780",
+                "reference": "cf57788d1ca64ee7e689698dc0295d25c9fe3780",
                 "shasum": ""
             },
             "require": {
@@ -3444,7 +3489,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-04T09:32:40+00:00"
+            "time": "2020-03-16T11:24:17+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -3680,16 +3725,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v4.4.5",
+            "version": "v4.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "94d005c176db2080e98825d98e01e8b311a97a88"
+                "reference": "43d7a46b1f80b4fd2ecfac4a9a4cc1f22d029fbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/94d005c176db2080e98825d98e01e8b311a97a88",
-                "reference": "94d005c176db2080e98825d98e01e8b311a97a88",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/43d7a46b1f80b4fd2ecfac4a9a4cc1f22d029fbb",
+                "reference": "43d7a46b1f80b4fd2ecfac4a9a4cc1f22d029fbb",
                 "shasum": ""
             },
             "require": {
@@ -3735,7 +3780,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-03T10:46:43+00:00"
+            "time": "2020-03-16T08:56:54+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -3988,7 +4033,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.4.0"
+        "php": ">=7.0"
     },
     "platform-dev": []
 }
