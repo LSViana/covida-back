@@ -446,6 +446,9 @@
       "Covida.Core/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "NetTopologySuite": "2.0.0"
+        },
         "compile": {
           "bin/placeholder/Covida.Core.dll": {}
         },

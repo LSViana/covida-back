@@ -391,6 +391,9 @@
       },
       "System.ValueTuple/4.5.0": {},
       "Covida.Core/1.0.0": {
+        "dependencies": {
+          "NetTopologySuite": "2.0.0"
+        },
         "runtime": {
           "Covida.Core.dll": {}
         }

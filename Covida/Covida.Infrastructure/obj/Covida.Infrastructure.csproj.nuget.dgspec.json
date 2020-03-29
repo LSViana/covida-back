@@ -46,6 +46,10 @@
               "target": "Package",
               "version": "[2.0.3, )",
               "autoReferenced": true
+            },
+            "NetTopologySuite": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             }
           },
           "imports": [
@@ -103,10 +107,6 @@
       "frameworks": {
         "netstandard2.0": {
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[9.0.0, )"
-            },
             "FluentValidation": {
               "target": "Package",
               "version": "[8.6.2, )"

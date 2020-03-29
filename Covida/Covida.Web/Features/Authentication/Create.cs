@@ -1,14 +1,12 @@
 ﻿using Covida.Core.Domain;
+using Covida.Infrastructure.Definitions;
 using Covida.Data.Postgre;
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Covida.Infrastructure.Geometry;
 
 namespace Covida.Web.Features.Authentication
 {
@@ -18,7 +16,7 @@ namespace Covida.Web.Features.Authentication
         {
             public string Name { get; set; }
             public string Address { get; set; }
-            public PointF Location { get; set; }
+            public PointD Location { get; set; }
             public bool IsVolunteer { get; set; }
         }
 
@@ -50,7 +48,7 @@ namespace Covida.Web.Features.Authentication
                 var user = new User
                 {
                     Name = request.Name,
-                    Location = request.Location,
+                    Location = request.Location.ToPoint(),
                     Address = request.Address,
                     IsVolunteer = request.IsVolunteer,
                     CreatedAt = DateTime.Now,

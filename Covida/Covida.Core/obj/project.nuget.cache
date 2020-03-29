@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "D3mLJ3LjZYo6LTy7rvMJ9vZSxfTuen0tQyormirPmBVnlVig8EJdgymklRI1mSelngUaUGRtjnPnfJfVj7co5g==",
+  "dgSpecHash": "Yzd/3Bi7CWZ05L7DB9yk67rS4JHbAuYgV9C8ukOyDieH5HaHdNZyLqO3o9s3z1Gb4zTNpW6lQoj0m5PWpVVUAg==",
   "success": true,
   "projectFilePath": "D:\\Lucas Viana\\Development\\senai\\covida\\covida-back\\Covida\\Covida.Core\\Covida.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\lv201\\.nuget\\packages\\nettopologysuite\\2.0.0\\nettopologysuite.2.0.0.nupkg.sha512",
+    "C:\\Users\\lv201\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\lv201\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
+    "C:\\Users\\lv201\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
+    "C:\\Users\\lv201\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.5.2\\system.runtime.compilerservices.unsafe.4.5.2.nupkg.sha512"
   ],
   "logs": []
 }

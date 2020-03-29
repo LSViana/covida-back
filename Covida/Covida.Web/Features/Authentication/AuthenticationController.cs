@@ -1,5 +1,6 @@
 ﻿using Covida.Data.Postgre;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Covida.Web.Features.Authentication
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class AuthenticationController : ControllerBase
@@ -20,6 +22,7 @@ namespace Covida.Web.Features.Authentication
             this.mediator = mediator;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Create.Command command)
         {
@@ -27,6 +30,7 @@ namespace Covida.Web.Features.Authentication
             return Created("me", response);
         }
 
+        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login.Command command)
         {
@@ -39,6 +43,13 @@ namespace Covida.Web.Features.Authentication
         {
             await mediator.Send(command);
             return NoContent();
+        }
+
+        [HttpGet("me")]
+        public async Task<IActionResult> Me()
+        {
+            var response = await mediator.Send(new Me.Query());
+            return Ok(response);
         }
     }
 }

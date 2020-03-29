@@ -2148,6 +2148,9 @@
         }
       },
       "Covida.Core/1.0.0": {
+        "dependencies": {
+          "NetTopologySuite": "2.0.0"
+        },
         "runtime": {
           "Covida.Core.dll": {}
         },
@@ -2170,7 +2173,6 @@
       },
       "Covida.Infrastructure/1.0.0": {
         "dependencies": {
-          "AutoMapper": "9.0.0",
           "Covida.Core": "1.0.0",
           "FluentValidation": "8.6.2",
           "MediatR": "8.0.1",

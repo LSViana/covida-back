@@ -3,7 +3,6 @@ using Covida.Data.Scaffold;
 using Covida.Web.Configuration;
 using Covida.Web.Hubs;
 using Covida.Web.Mediator;
-using Covida.Web.Middlewares;
 using Covida.Web.Middlewares.HttpExceptionHandling;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -15,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 namespace Covida.Web
 {
@@ -23,11 +23,11 @@ namespace Covida.Web
         public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
             Configuration = configuration;
-            Environment = environment;
+            HostEnvironment = environment;
         }
 
         public IConfiguration Configuration { get; }
-        public IHostEnvironment Environment { get; }
+        public IHostEnvironment HostEnvironment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,6 +37,7 @@ namespace Covida.Web
                 .AddJsonOptions(jsonOptions =>
                 {
                     jsonOptions.JsonSerializerOptions.IgnoreNullValues = true;
+                    jsonOptions.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 })
                 .AddFluentValidation();
 
@@ -46,18 +47,19 @@ namespace Covida.Web
 
             services.AddSwagger();
             services.AddCors();
-            if (Environment.IsProduction())
+            if (HostEnvironment.IsProduction())
             {
                 services.AddPostgre(Configuration);
             }
-            else if (Environment.IsDevelopment())
+
+            else if (HostEnvironment.IsDevelopment())
             {
                 services.AddDbContext<CovidaDbContext>(x =>
                 {
                     x.UseInMemoryDatabase("db");
                 });
             }
-            if (Environment.IsProduction())
+            if (HostEnvironment.IsProduction())
             {
                 services.AddScoped<DbSeeder<CovidaDbContext>, ProductionSeeder>();
             }
@@ -66,7 +68,7 @@ namespace Covida.Web
                 services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
             services.AddSingleton<HttpExceptionMiddleware>();
-            services.AddJwtAuthentication(Configuration);
+            services.AddJwtAuthentication(Configuration, HostEnvironment);
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ActorFetchHandler<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationHandler<,>));
@@ -95,6 +97,8 @@ namespace Covida.Web
             app.UseRouting();
 
             app.UseHttpExceptionHandler();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

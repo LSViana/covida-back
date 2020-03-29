@@ -59,7 +59,7 @@ namespace Covida.Web.Features.Authentication
                     NotBefore = now,
                     Subject = new ClaimsIdentity(new[]
                     {
-                        new Claim(nameof(User.Id), request.User.ToString()),
+                        new Claim(nameof(User.Id), request.User.Id.ToString()),
                     }),
                     SigningCredentials =
                         new SigningCredentials(JwtAuthentication.GetSecurityKey(jwtOptions["SecretKey"], jwtOptions["SecurityPhrase"]), SecurityAlgorithms.HmacSha256),

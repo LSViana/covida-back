@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Covida.Web.Configuration
     {
         public const string JwtBaseKey = "JwtOptions";
 
-        public static void AddJwtAuthentication(this IServiceCollection @this, IConfiguration configuration)
+        public static void AddJwtAuthentication(this IServiceCollection @this, IConfiguration configuration, IHostEnvironment hostEnvironment)
         {
             var jwtOptions = configuration.GetSection(JwtBaseKey);
             @this
@@ -23,10 +24,10 @@ namespace Covida.Web.Configuration
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(options =>
                 {
+                    options.RequireHttpsMetadata = hostEnvironment.IsProduction();
                     options.TokenValidationParameters = new TokenValidationParameters()
                     {
                         ValidAudience = jwtOptions["Audience"],

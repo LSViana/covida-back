@@ -1,13 +1,9 @@
 ﻿using Covida.Core.Domain;
 using Covida.Data.Postgre;
 using Covida.Infrastructure.Definitions;
+using Covida.Infrastructure.Geometry;
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,7 +13,7 @@ namespace Covida.Web.Features.Authentication
     {
         public class Command : IActorAwareRequest<Unit>
         {
-            public PointF Location { get; set; }
+            public PointD Location { get; set; }
             public string Address { get; set; }
             public User Actor { get; set; }
         }
@@ -45,7 +41,7 @@ namespace Covida.Web.Features.Authentication
             {
                 // Update its location and address
                 request.Actor.Address = request.Address;
-                request.Actor.Location = request.Location;
+                request.Actor.Location = request.Location.ToPoint();
                 // Save to database
                 db.Users.Update(request.Actor);
                 await db.SaveChangesAsync();

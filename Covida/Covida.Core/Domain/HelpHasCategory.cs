@@ -8,7 +8,7 @@ namespace Covida.Core.Domain
     public class HelpHasCategory : IDomain
     {
         public Guid HelpId { get; set; }
-        public Guid HelpCategoryId { get; set; }
+        public int HelpCategoryId { get; set; }
         public Help Help { get; set; }
         public HelpCategory HelpCategory { get; set; }
         public DateTime CreatedAt { get; set; }

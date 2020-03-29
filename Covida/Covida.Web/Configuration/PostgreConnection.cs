@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Npgsql;
 
 namespace Covida.Web.Configuration
 {
@@ -13,11 +14,16 @@ namespace Covida.Web.Configuration
             // Registering the database context
             @this.AddDbContext<CovidaDbContext>(builder =>
             {
+                // Adding PostgreSQL configuration
                 builder.UseNpgsql(
                     configuration.GetConnectionString(key),
                     // The following configuration is needed to keep using DbContext out of the Eventually.Web project
-                    npgOptions => npgOptions.MigrationsAssembly($"{nameof(Covida)}.{nameof(Web)}")
-                );
+                    npgOptions =>
+                    {
+                        // Adding NetTopologySuite support everywhere
+                        npgOptions.UseNetTopologySuite();
+                        npgOptions.MigrationsAssembly($"{nameof(Covida)}.{nameof(Web)}");
+                    });
             });
         }
     }
