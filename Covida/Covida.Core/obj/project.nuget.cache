@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "D3mLJ3LjZYo6LTy7rvMJ9vZSxfTuen0tQyormirPmBVnlVig8EJdgymklRI1mSelngUaUGRtjnPnfJfVj7co5g==",
+  "success": true,
+  "projectFilePath": "D:\\Lucas Viana\\Development\\senai\\covida\\covida-back\\Covida\\Covida.Core\\Covida.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

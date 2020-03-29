@@ -1,0 +1,9 @@
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\bin\Debug\netstandard2.0\Covida.Core.deps.json
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\bin\Debug\netstandard2.0\Covida.Core.dll
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\bin\Debug\netstandard2.0\Covida.Core.pdb
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\obj\Debug\netstandard2.0\Covida.Core.csprojAssemblyReference.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\obj\Debug\netstandard2.0\Covida.Core.csproj.CoreCompileInputs.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\obj\Debug\netstandard2.0\Covida.Core.AssemblyInfoInputs.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\obj\Debug\netstandard2.0\Covida.Core.AssemblyInfo.cs
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\obj\Debug\netstandard2.0\Covida.Core.dll
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Core\obj\Debug\netstandard2.0\Covida.Core.pdb

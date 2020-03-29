@@ -1,0 +1,12 @@
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\bin\Debug\netstandard2.0\Covida.Infrastructure.deps.json
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\bin\Debug\netstandard2.0\Covida.Infrastructure.dll
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.csprojAssemblyReference.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.AssemblyInfoInputs.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.AssemblyInfo.cs
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\bin\Debug\netstandard2.0\Covida.Core.dll
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\bin\Debug\netstandard2.0\Covida.Infrastructure.pdb
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\bin\Debug\netstandard2.0\Covida.Core.pdb
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.csproj.CopyComplete
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.dll
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Infrastructure\obj\Debug\netstandard2.0\Covida.Infrastructure.pdb
