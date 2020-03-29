@@ -11,7 +11,7 @@ namespace Covida.Core.Domain
         public Guid Id { get; set; }
         public string Text { get; set; }
         public MessageStatus MessageStatus { get; set; }
-        public int HelpId { get; set; }
+        public Guid HelpId { get; set; }
         public int UserId { get; set; }
         public Help Help { get; set; }
         public User User { get; set; }

@@ -53,7 +53,7 @@ namespace Covida.Data.Scaffold
             {
                 new User
                 {
-                    Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238C8}"),
+                    Id = 1,
                     Name = "Lucas Viana",
                     Address = "Al. Barão de Limeira, 539",
                     Location = new PointF(-23.5363939f, -46.6462365f),
@@ -63,13 +63,23 @@ namespace Covida.Data.Scaffold
                 },
                 new User
                 {
-                    Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238C9}"),
+                    Id = 2,
                     Name = "Gustavo Henrique",
                     Address = "Al. Barão de Limeira, 549",
                     Location = new PointF(-23.536638f,-46.645745f),
                     IsVolunteer = false,
                     CreatedAt = new DateTime(),
                     DeletedAt = null,
+                },
+                new User
+                {
+                    Id = 3,
+                    Name = "Lucas Souza",
+                    Address = "Al. Barão de Limeira, 549",
+                    Location = new PointF(-23.536638f,-46.645745f),
+                    IsVolunteer = false,
+                    CreatedAt = new DateTime(),
+                    DeletedAt = new DateTime(),
                 }
             });
         }

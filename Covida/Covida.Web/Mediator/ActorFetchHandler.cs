@@ -38,7 +38,7 @@ namespace Covida.Web.Mediator
                     {
                         throw new HttpException(HttpStatusCode.BadRequest, ErrorMessages.InvalidToken);
                     }
-                    var id = Guid.Parse(idClaim.Value);
+                    var id = int.Parse(idClaim.Value);
                     var user = await db.Users
                         .FirstOrDefaultAsync(x => x.Id == id);
                     if (user is null || user.IsDeleted())

@@ -27,7 +27,7 @@ namespace Covida.Data.Postgre
                 // Create a parameter that represents the instance when applying filters (where in SQL)
                 ParameterExpression entityParameter = Expression.Parameter(entityType.ClrType, "x");
                 // Creating the LambdaExpression to filter this entity and return only not deleted records
-                var isDeletedFilter = Expression.Lambda(Expression.Property(entityParameter, isDeletedProperty.PropertyInfo), entityParameter);
+                var isDeletedFilter = Expression.Lambda(Expression.Equal(Expression.Property(entityParameter, isDeletedProperty.PropertyInfo), Expression.Constant(null)), entityParameter);
                 // Applying the query filter to be executed in every SELECT * FROM <tableName> for this entity
                 entityType.SetQueryFilter(isDeletedFilter);
                 #endregion

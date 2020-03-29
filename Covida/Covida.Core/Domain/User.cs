@@ -8,7 +8,7 @@ namespace Covida.Core.Domain
 {
     public class User : IDomain
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public PointF Location { get; set; }
         public string Address { get; set; }

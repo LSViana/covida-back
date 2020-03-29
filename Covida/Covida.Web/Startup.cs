@@ -4,6 +4,7 @@ using Covida.Web.Configuration;
 using Covida.Web.Hubs;
 using Covida.Web.Mediator;
 using Covida.Web.Middlewares;
+using Covida.Web.Middlewares.HttpExceptionHandling;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -43,6 +44,7 @@ namespace Covida.Web
             AssemblyScanner.FindValidatorsInAssembly(Assembly.GetExecutingAssembly())
                 .ForEach(result => services.AddScoped(result.InterfaceType, result.ValidatorType));
 
+            services.AddSwagger();
             services.AddCors();
             if (Environment.IsProduction())
             {
@@ -57,11 +59,11 @@ namespace Covida.Web
             }
             if (Environment.IsProduction())
             {
-                services.AddSingleton<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
+                services.AddScoped<DbSeeder<CovidaDbContext>, ProductionSeeder>();
             }
             else
             {
-                services.AddSingleton<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
+                services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
             services.AddSingleton<HttpExceptionMiddleware>();
             services.AddJwtAuthentication(Configuration);
@@ -92,6 +94,8 @@ namespace Covida.Web
 
             app.UseRouting();
 
+            app.UseHttpExceptionHandler();
+
             app.UseAuthorization();
 
             app.UseEndpoints(routeBuilder =>
@@ -103,7 +107,7 @@ namespace Covida.Web
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Eventually V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Covida V1");
             });
 
             app.UseEndpoints(endpoints =>
