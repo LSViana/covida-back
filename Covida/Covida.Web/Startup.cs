@@ -53,7 +53,6 @@ namespace Covida.Web
                 services.AddPostgre(Configuration);
                 services.AddScoped<DbSeeder<CovidaDbContext>, ProductionSeeder>();
             }
-
             else if (HostEnvironment.IsDevelopment())
             {
                 services.AddDbContext<CovidaDbContext>(x =>
