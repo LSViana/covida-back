@@ -24,7 +24,7 @@ namespace Covida.Web.Configuration
                         npgOptions.UseNetTopologySuite();
                         npgOptions.MigrationsAssembly($"{nameof(Covida)}.{nameof(Web)}");
                     });
-            });
+            }, ServiceLifetime.Transient);
         }
     }
 }

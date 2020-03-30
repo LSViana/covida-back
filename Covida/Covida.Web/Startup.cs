@@ -58,7 +58,7 @@ namespace Covida.Web
                 services.AddDbContext<CovidaDbContext>(x =>
                 {
                     x.UseInMemoryDatabase("db");
-                });
+                }, ServiceLifetime.Transient);
                 services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
             services.AddSignalR();
