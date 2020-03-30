@@ -48,7 +48,8 @@ namespace Covida.Web.Features.Authentication
                 var user = new User
                 {
                     Name = request.Name,
-                    Location = request.Location.ToPoint(),
+                    Longitude = request.Location.X,
+                    Latitude = request.Location.Y,
                     Address = request.Address,
                     IsVolunteer = request.IsVolunteer,
                     CreatedAt = DateTime.Now,

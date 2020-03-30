@@ -41,7 +41,9 @@ namespace Covida.Web.Features.Authentication
             {
                 // Update its location and address
                 request.Actor.Address = request.Address;
-                request.Actor.Location = request.Location.ToPoint();
+                var location = request.Location.ToPoint();
+                request.Actor.Latitude = location.Y;
+                request.Actor.Longitude = location.X;
                 // Save to database
                 db.Users.Update(request.Actor);
                 await db.SaveChangesAsync();

@@ -90,7 +90,11 @@ namespace Covida.Web.Features.Helps
                         {
                             Id = x.Author.Id,
                             Name = x.Author.Name,
-                            Location = x.Author.Location.ToPointD(),
+                            Location = new PointD
+                            {
+                                X = x.Author.Longitude,
+                                Y = x.Author.Latitude,
+                            }
                         },
                     })
                     .FirstOrDefaultAsync(x => x.Id == request.Id);

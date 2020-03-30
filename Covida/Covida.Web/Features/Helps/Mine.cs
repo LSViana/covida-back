@@ -83,7 +83,11 @@ namespace Covida.Web.Features.Helps
                             Id = x.Author.Id,
                             Name = x.Author.Name,
                             Address = x.Author.Address,
-                            Location = x.Author.Location.ToPointD(),
+                            Location = new PointD
+                            {
+                                X = x.Author.Longitude,
+                                Y = x.Author.Latitude,
+                            },
                         },
                     });
                 // Return the results

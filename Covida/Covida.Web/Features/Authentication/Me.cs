@@ -37,12 +37,17 @@ namespace Covida.Web.Features.Authentication
             {
                 // Map the user to Result
                 var actor = request.Actor;
+                var location = new PointD
+                {
+                    X = actor.Longitude,
+                    Y = actor.Latitude,
+                };
                 var result = new Result
                 {
                     Id = actor.Id,
                     Address = actor.Address,
                     IsVolunteer = actor.IsVolunteer,
-                    Location = actor.Location.ToPointD(),
+                    Location = location,
                     Name = actor.Name,
                 };
                 // Return

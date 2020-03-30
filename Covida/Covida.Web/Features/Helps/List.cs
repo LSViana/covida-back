@@ -77,13 +77,16 @@ namespace Covida.Web.Features.Helps
                         CreatedAt = x.CreatedAt,
                         CancelledReason = x.CancelledReason,
                         HelpStatus = x.HelpStatus,
-                        CartesianDistance = x.Author.Location.Distance(requestPoint),
                         Categories = x.HelpHasCategories.Select(y => y.HelpCategory.Name).ToArray(),
                         User = new Result.UserResult
                         {
                             Id = x.Author.Id,
                             Name = x.Author.Name,
-                            Location = x.Author.Location.ToPointD(),
+                            Location = new PointD
+                            {
+                                X = x.Author.Longitude,
+                                Y = x.Author.Latitude,
+                            },
                         },
                     })
                     .Where(x => x.CartesianDistance < request.MaxDistance);

@@ -145,7 +145,11 @@ namespace Covida.Web.Features.Helps
                         User = new WebSocketResult.UserResult {
                             Id = help.Author.Id,
                             Name = help.Author.Name,
-                            Location = help.Author.Location.ToPointD()
+                            Location = new PointD
+                            {
+                                X = help.Author.Longitude,
+                                Y = help.Author.Latitude,
+                            },
                         },
                     },
                 }, cancellationToken);

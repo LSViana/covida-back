@@ -55,10 +55,11 @@ namespace Covida.Web
             }
             else if (HostEnvironment.IsDevelopment())
             {
-                services.AddDbContext<CovidaDbContext>(x =>
-                {
-                    x.UseInMemoryDatabase("db");
-                }, ServiceLifetime.Transient);
+                services.AddPostgre(Configuration);
+                //services.AddDbContext<CovidaDbContext>(x =>
+                //{
+                //    x.UseInMemoryDatabase("db");
+                //}, ServiceLifetime.Transient);
                 services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
             services.AddSignalR();
