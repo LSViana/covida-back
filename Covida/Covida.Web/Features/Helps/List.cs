@@ -41,6 +41,7 @@ namespace Covida.Web.Features.Helps
             public HelpStatus HelpStatus { get; set; }
             public UserResult User { get; set; }
             public double CartesianDistance { get; set; }
+            public string[] Categories { get; set; }
 
             public class UserResult
             {
@@ -65,7 +66,9 @@ namespace Covida.Web.Features.Helps
                 requestPoint.SRID = Core.Domain.Constants.Location.DefaultSRID;
                 // Get all helps
                 var helpsQuery = db.Helps
-                    .Include(x => x.User)
+                    .Include(x => x.Author)
+                    // List only the unanswered
+                    .Where(x => x.HelpStatus == HelpStatus.Awaiting)
                     // Map them to result
                     .Select(x => new Result
                     {
@@ -74,12 +77,13 @@ namespace Covida.Web.Features.Helps
                         CreatedAt = x.CreatedAt,
                         CancelledReason = x.CancelledReason,
                         HelpStatus = x.HelpStatus,
-                        CartesianDistance = x.User.Location.Distance(requestPoint),
+                        CartesianDistance = x.Author.Location.Distance(requestPoint),
+                        Categories = x.HelpHasCategories.Select(y => y.HelpCategory.Name).ToArray(),
                         User = new Result.UserResult
                         {
-                            Id = x.User.Id,
-                            Name = x.User.Name,
-                            Location = x.User.Location.ToPointD(),
+                            Id = x.Author.Id,
+                            Name = x.Author.Name,
+                            Location = x.Author.Location.ToPointD(),
                         },
                     })
                     .Where(x => x.CartesianDistance < request.MaxDistance);

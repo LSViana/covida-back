@@ -3,8 +3,11 @@ using Covida.Core.Domain.Constants;
 using Covida.Data.Postgre;
 using Covida.Infrastructure.Definitions;
 using Covida.Infrastructure.Exceptions;
+using Covida.Infrastructure.Geometry;
+using Covida.Web.Hubs;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -60,13 +63,27 @@ namespace Covida.Web.Features.Helps
             }
         }
 
+        public class WebSocketResult : Result
+        {
+            public UserResult User { get; set; }
+
+            public class UserResult
+            {
+                public int Id { get; set; }
+                public string Name { get; set; }
+                public PointD Location { get; set; }
+            }
+        }
+
         public class RequestHandler : IRequestHandler<Command, Result>
         {
             private readonly CovidaDbContext db;
+            private readonly IHubContext<MessagesHub> hubContext;
 
-            public RequestHandler(CovidaDbContext db)
+            public RequestHandler(CovidaDbContext db, IHubContext<MessagesHub> hubContext)
             {
                 this.db = db;
+                this.hubContext = hubContext;
             }
 
             public async Task<Result> Handle(Command request, CancellationToken cancellationToken)
@@ -85,7 +102,7 @@ namespace Covida.Web.Features.Helps
                     Id = Guid.NewGuid(),
                     CreatedAt = DateTime.Now,
                     HelpStatus = HelpStatus.Awaiting,
-                    User = request.Actor,
+                    Author = request.Actor,
                     HelpItems = request.Items
                         .Select(x => new HelpItem
                         {
@@ -106,8 +123,7 @@ namespace Covida.Web.Features.Helps
                 // Save to database
                 await db.Helps.AddAsync(help);
                 await db.SaveChangesAsync();
-                // Return the newly created Help mapped to result
-                return new Result
+                var result = new Result
                 {
                     Id = help.Id,
                     HelpStatus = help.HelpStatus,
@@ -120,6 +136,21 @@ namespace Covida.Web.Features.Helps
                         })
                         .ToArray(),
                 };
+                // Send the message for everyone in WebSocket
+                await hubContext.Clients.Group(MessagesHub.VolunteerGroupName).SendCoreAsync("newHelp", new[] {
+                    new WebSocketResult {
+                        Id = result.Id,
+                        HelpItems = result.HelpItems,
+                        HelpStatus = result.HelpStatus,
+                        User = new WebSocketResult.UserResult {
+                            Id = help.Author.Id,
+                            Name = help.Author.Name,
+                            Location = help.Author.Location.ToPointD()
+                        },
+                    },
+                }, cancellationToken);
+                // Return the newly created Help mapped to result
+                return result;
             }
         }
 

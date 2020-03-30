@@ -9,6 +9,7 @@ using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,6 +51,7 @@ namespace Covida.Web
             if (HostEnvironment.IsProduction())
             {
                 services.AddPostgre(Configuration);
+                services.AddScoped<DbSeeder<CovidaDbContext>, ProductionSeeder>();
             }
 
             else if (HostEnvironment.IsDevelopment())
@@ -58,21 +60,16 @@ namespace Covida.Web
                 {
                     x.UseInMemoryDatabase("db");
                 });
-            }
-            if (HostEnvironment.IsProduction())
-            {
-                services.AddScoped<DbSeeder<CovidaDbContext>, ProductionSeeder>();
-            }
-            else
-            {
                 services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
+            services.AddSignalR();
+            services.AddSignalRCore();
+            services.AddSingleton<IUserIdProvider, IdUserIdProvider>();
             services.AddSingleton<HttpExceptionMiddleware>();
             services.AddJwtAuthentication(Configuration, HostEnvironment);
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ActorFetchHandler<,>));
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationHandler<,>));
-            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,11 +99,6 @@ namespace Covida.Web
 
             app.UseAuthorization();
 
-            app.UseEndpoints(routeBuilder =>
-            {
-                routeBuilder.MapHub<MessagesHub>(MessagesHub.Url);
-            });
-
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
@@ -116,6 +108,7 @@ namespace Covida.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<MessagesHub>(MessagesHub.Url);
                 endpoints.MapControllers();
             });
         }

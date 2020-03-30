@@ -13,6 +13,7 @@ namespace Covida.Core.Domain
         public string Address { get; set; }
         public bool IsVolunteer { get; set; }
         public ICollection<Help> Helps { get; set; }
+        public ICollection<Help> Answers { get; set; }
         public ICollection<Message> Messages { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

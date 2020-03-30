@@ -1,7 +1,7 @@
-﻿using Covida.Core.Domain.Constants;
+﻿using Covida.Core.Domain;
+using Covida.Core.Domain.Constants;
 using Covida.Data.Postgre;
 using Covida.Infrastructure.Definitions;
-using Covida.Infrastructure.Exceptions;
 using Covida.Infrastructure.Geometry;
 using FluentValidation;
 using MediatR;
@@ -9,25 +9,15 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Covida.Web.Features.Helps
 {
-    public class Read
+    public class Mine
     {
-        public class Query : IRequest<Result>
+        public class Query : ActorAwarePageRequest<Result>
         {
-            public Guid Id { get; set; }
-        }
-
-        public class CommandValidator : AbstractValidator<Query>
-        {
-            public CommandValidator()
-            {
-                RuleFor(x => x.Id).NotEmpty();
-            }
         }
 
         public class Result
@@ -57,7 +47,7 @@ namespace Covida.Web.Features.Helps
             }
         }
 
-        public class RequestHandler : IRequestHandler<Query, Result>
+        public class RequestHandler : IRequestHandler<Query, PageResult<Result>>
         {
             private readonly CovidaDbContext db;
 
@@ -66,11 +56,13 @@ namespace Covida.Web.Features.Helps
                 this.db = db;
             }
 
-            public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<PageResult<Result>> Handle(Query request, CancellationToken cancellationToken)
             {
-                // Get the help
-                var help = await db.Helps
-                    .Include(x => x.HelpItems)
+                // Get all helps for this user that are active
+                var helpsQuery = db.Helps
+                    .Where(x => x.VolunteerId == request.Actor.Id || x.AuthorId == request.Actor.Id)
+                    .Where(x => x.HelpStatus == HelpStatus.Active)
+                    // Map them to result
                     .Select(x => new Result
                     {
                         Id = x.Id,
@@ -92,17 +84,11 @@ namespace Covida.Web.Features.Helps
                             Name = x.Author.Name,
                             Location = x.Author.Location.ToPointD(),
                         },
-                    })
-                    .FirstOrDefaultAsync(x => x.Id == request.Id);
-                // If it doesn't exist
-                if (help is null)
-                {
-                    // Throw a Bad Request exception
-                    throw new HttpException(HttpStatusCode.BadRequest, ErrorMessages.EntityNotFound<Core.Domain.Help>());
-                }
-                // Otherwise return
-                return help;
+                    });
+                // Return the results
+                return await request.GetResult(helpsQuery);
             }
         }
     }
+
 }

@@ -35,10 +35,32 @@ namespace Covida.Web.Features.Helps
             return Ok(response);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] Create.Command command)
         {
             var response = await mediator.Send(command);
             return Created($"{nameof(Read)}/${response.Id}", response);
+        }
+
+        [HttpGet("answer/{helpId}")]
+        public async Task<IActionResult> Answer([FromRoute] Guid helpId)
+        {
+            var response = await mediator.Send(new Answer.Command { HelpId = helpId });
+            return NoContent();
+        }
+
+        [HttpGet("mine")]
+        public async Task<IActionResult> MyHelps()
+        {
+            var response = await mediator.Send(new Mine.Query());
+            return Ok(response);
+        }
+
+        [HttpGet("update-help-item/{helpItemId}/{complete}")]
+        public async Task<IActionResult> UpdateHelpItem([FromRoute] Guid helpItemId, [FromRoute] bool complete)
+        {
+            var response = await mediator.Send(new UpdateHelpItem.Command { HelpItemId = helpItemId, Complete = complete });
+            return NoContent();
         }
     }
 }

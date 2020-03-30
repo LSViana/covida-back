@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Covida.Web.Hubs;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -43,6 +45,24 @@ namespace Covida.Web.Configuration
                         ValidateLifetime = true,
                         ValidateIssuer = true,
                         ValidateAudience = true,
+                    };
+                    // Adding the hook allows the access to the JWT token through Web-Socket requests
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var token = context.Request.Query["access_token"];
+                            // If the request is accessing the Hub and there's token
+                            if (!string.IsNullOrWhiteSpace(token) &&
+                                context.Request.Path.StartsWithSegments(MessagesHub.Url))
+                            {
+                                var jwtHandler = new JwtSecurityTokenHandler();
+                                var jwt = jwtHandler.ReadJwtToken(token);
+                                // Adding user identity from Token
+                                context.HttpContext.User.AddIdentity(new System.Security.Claims.ClaimsIdentity(jwt.Claims));
+                            }
+                            return Task.CompletedTask;
+                        },
                     };
                     //
                     options.Validate();

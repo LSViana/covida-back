@@ -12,8 +12,10 @@ namespace Covida.Core.Domain
         public DateTime? CancelledAt { get; set; }
         public string CancelledReason { get; set; }
         public HelpStatus HelpStatus { get; set; }
-        public User User { get; set; }
-        public int UserId { get; set; }
+        public User Author { get; set; }
+        public int AuthorId { get; set; }
+        public User Volunteer { get; set; }
+        public int? VolunteerId { get; set; }
         public ICollection<HelpHasCategory> HelpHasCategories { get; set; }
         public ICollection<HelpItem> HelpItems { get; set; }
         public ICollection<Message> Messages { get; set; }

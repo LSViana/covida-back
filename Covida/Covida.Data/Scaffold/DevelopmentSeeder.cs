@@ -35,13 +35,13 @@ namespace Covida.Data.Scaffold
             helps.Add(new Help
             {
                 Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238D0}"),
-                HelpStatus = Core.Domain.Constants.HelpStatus.Active,
-                User = users.ElementAt(0),
+                HelpStatus = Core.Domain.Constants.HelpStatus.Awaiting,
+                Author = users.ElementAt(0),
                 HelpItems = new[]
                 {
                         new HelpItem {
                             Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238D0}"),
-                            Name = "Maçã",
+                            Name = "Apple",
                             Amount = 2,
                             Complete = false,
                             CreatedAt = DateTime.Now,
@@ -63,13 +63,13 @@ namespace Covida.Data.Scaffold
             helps.Add(new Help
             {
                 Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238D1}"),
-                HelpStatus = Core.Domain.Constants.HelpStatus.Awaiting,
-                User = users.ElementAt(1),
+                HelpStatus = Core.Domain.Constants.HelpStatus.Active,
+                Author = users.ElementAt(1),
                 HelpItems = new[]
                 {
                     new HelpItem {
                         Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238D8}"),
-                        Name = "Pão",
+                        Name = "Bread",
                         Amount = 2,
                         Complete = false,
                         CreatedAt = DateTime.Now,
@@ -79,18 +79,19 @@ namespace Covida.Data.Scaffold
                 {
                     new HelpHasCategory { HelpCategory = helpCategories.ElementAt(1) }
                 },
+                Volunteer = users.ElementAt(0),
                 CreatedAt = DateTime.Now,
             });
             helps.Add(new Help
             {
                 Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238D2}"),
                 HelpStatus = Core.Domain.Constants.HelpStatus.Cancelled,
-                User = users.ElementAt(1),
+                Author = users.ElementAt(1),
                 HelpItems = new[]
                 {
                     new HelpItem {
                         Id = Guid.Parse("{A9612A5A-F2E1-45A6-AFEB-C68DCD8238D9}"),
-                        Name = "Pão",
+                        Name = "Bread",
                         Amount = 6,
                         Complete = false,
                         CreatedAt = DateTime.Now,
@@ -110,22 +111,22 @@ namespace Covida.Data.Scaffold
             helpCategories.Add(new HelpCategory
             {
                 Id = 1,
-                Name = "Mercado",
+                Name = "Market",
             });
             helpCategories.Add(new HelpCategory
             {
                 Id = 2,
-                Name = "Padaria",
+                Name = "Bakery",
             });
             helpCategories.Add(new HelpCategory
             {
                 Id = 3,
-                Name = "Farmácia",
+                Name = "Pharmacy",
             });
             helpCategories.Add(new HelpCategory
             {
                 Id = 4,
-                Name = "Outros",
+                Name = "Other",
             });
             await DbContext.HelpCategories.AddRangeAsync(helpCategories);
         }
@@ -137,7 +138,7 @@ namespace Covida.Data.Scaffold
                 Id = 1,
                 Name = "Lucas Viana",
                 Address = "Al. Barão de Limeira, 539",
-                Location = new Point(-23.5363939f, -46.6462365f) { SRID = Core.Domain.Constants.Location.DefaultSRID },
+                Location = new Point(-23.5646143, -46.4159218) { SRID = Core.Domain.Constants.Location.DefaultSRID },
                 IsVolunteer = true,
                 CreatedAt = DateTime.Now,
                 DeletedAt = null,
@@ -147,7 +148,7 @@ namespace Covida.Data.Scaffold
                 Id = 2,
                 Name = "Gustavo Henrique",
                 Address = "Al. Barão de Limeira, 549",
-                Location = new Point(-23.536638f, -46.645745f) { SRID = Core.Domain.Constants.Location.DefaultSRID },
+                Location = new Point(-23.5646143, -46.4159218) { SRID = Core.Domain.Constants.Location.DefaultSRID },
                 IsVolunteer = false,
                 CreatedAt = DateTime.Now,
                 DeletedAt = null,
@@ -157,7 +158,7 @@ namespace Covida.Data.Scaffold
                 Id = 3,
                 Name = "Lucas Souza",
                 Address = "Al. Barão de Limeira, 549",
-                Location = new Point(-23.536638f, -46.645745f) { SRID = Core.Domain.Constants.Location.DefaultSRID },
+                Location = new Point(-23.5646143, -46.4159218) { SRID = Core.Domain.Constants.Location.DefaultSRID },
                 IsVolunteer = false,
                 CreatedAt = DateTime.Now,
                 DeletedAt = DateTime.Now,

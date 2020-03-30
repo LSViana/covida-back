@@ -49,6 +49,16 @@ namespace Covida.Data.Postgre
                     x.HelpCategoryId,
                 });
             #endregion
+            #region Help multiple relations to User
+            modelBuilder.Entity<Help>()
+                .HasOne(x => x.Author)
+                .WithMany(x => x.Helps)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Help>()
+                .HasOne(x => x.Volunteer)
+                .WithMany(x => x.Answers)
+                .OnDelete(DeleteBehavior.Cascade);
+            #endregion
         }
 
         #region Database sets

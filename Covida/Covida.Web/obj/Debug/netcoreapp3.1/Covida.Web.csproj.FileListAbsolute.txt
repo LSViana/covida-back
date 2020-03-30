@@ -141,3 +141,4 @@ D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\obj\Debug\netcoreapp3.1\Covida.Web.csproj.CoreCompileInputs.cache
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\obj\Debug\netcoreapp3.1\Covida.Web.MvcApplicationPartsAssemblyInfo.cs
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\obj\Debug\netcoreapp3.1\Covida.Web.MvcApplicationPartsAssemblyInfo.cache
+D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
