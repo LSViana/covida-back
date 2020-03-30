@@ -102,7 +102,7 @@ namespace Covida.Web.Features.Helps
                     Id = Guid.NewGuid(),
                     CreatedAt = DateTime.Now,
                     HelpStatus = HelpStatus.Awaiting,
-                    Author = request.Actor,
+                    AuthorId = request.Actor.Id,
                     HelpItems = request.Items
                         .Select(x => new HelpItem
                         {

@@ -68,7 +68,7 @@ namespace Covida.Web.Features.Helps
                     MessageStatus = Core.Domain.Constants.MessageStatus.Sent,
                     Text = request.Text,
                     Help = help,
-                    User = request.Actor,
+                    UserId = request.Actor.Id,
                 };
                 // Save it to database
                 await db.Messages.AddAsync(message);

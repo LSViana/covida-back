@@ -58,7 +58,7 @@ namespace Covida.Web.Features.Helps
                     throw new HttpException(HttpStatusCode.BadRequest, ErrorMessages.AnotherVolunteerAlreadyAnswered);
                 }
                 // Otherwise, assign the volunteer and return
-                help.Volunteer = request.Actor;
+                help.VolunteerId = request.Actor.Id;
                 help.HelpStatus = Core.Domain.Constants.HelpStatus.Active;
                 db.Helps.Update(help);
                 await db.SaveChangesAsync();
