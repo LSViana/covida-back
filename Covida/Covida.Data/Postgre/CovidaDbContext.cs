@@ -67,6 +67,7 @@ namespace Covida.Data.Postgre
         public DbSet<Help> Helps { get; set; }
         public DbSet<HelpHasCategory> HelpHasCategories { get; set; }
         public DbSet<HelpItem> HelpItems { get; set; }
+        public DbSet<Message> Messages { get; set; }
         #endregion
     }
 }

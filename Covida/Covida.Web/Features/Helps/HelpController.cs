@@ -62,5 +62,35 @@ namespace Covida.Web.Features.Helps
             var response = await mediator.Send(new UpdateHelpItem.Command { HelpItemId = helpItemId, Complete = complete });
             return NoContent();
         }
+
+        [HttpPost("send-message-chat")]
+        public async Task<IActionResult> SendMessageChat([FromBody] SendMessageChat.Command command)
+        {
+            var response = await mediator.Send(command);
+            // TODO (LSViana) It should be Created() and not Ok() here, but there's no GET message yet, so it'll be fixed later
+            return Ok(response);
+        }
+
+        [HttpGet("help-messages/{helpId}")]
+        public async Task<IActionResult> ListHelpMessages([FromRoute] Guid helpId, [FromQuery] int pageSize = 100, [FromQuery] int page = 1)
+        {
+            var response = await mediator.Send(new ListHelpMessages.Query
+            {
+                HelpId = helpId,
+                Page = page,
+                PageSize = pageSize,
+            });
+            return Ok(response);
+        }
+
+        [HttpGet("finish/{helpId}")]
+        public async Task<IActionResult> Finish([FromRoute] Guid helpId)
+        {
+            var response = await mediator.Send(new FinishHelp.Command
+            {
+                HelpId = helpId,
+            });
+            return NoContent();
+        }
     }
 }

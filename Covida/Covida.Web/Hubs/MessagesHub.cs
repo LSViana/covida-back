@@ -23,5 +23,15 @@ namespace Covida.Web.Hubs
         {
             await Groups.AddToGroupAsync(Context.ConnectionId, isVolunteer ? VolunteerGroupName : GroupOfRiskGroupName);
         }
+
+        public async Task JoinChat(string helpId)
+        {
+            await Groups.AddToGroupAsync(Context.ConnectionId, helpId);
+        }
+
+        public async Task LeaveChat(string helpId)
+        {
+            await Groups.RemoveFromGroupAsync(Context.ConnectionId, helpId);
+        }
     }
 }

@@ -35,6 +35,7 @@ namespace Covida.Web.Features.Helps
             {
                 public int Id { get; set; }
                 public string Name { get; set; }
+                public string Address { get; set; }
                 public PointD Location { get; set; }
             }
 
@@ -61,7 +62,6 @@ namespace Covida.Web.Features.Helps
                 // Get all helps for this user that are active
                 var helpsQuery = db.Helps
                     .Where(x => x.VolunteerId == request.Actor.Id || x.AuthorId == request.Actor.Id)
-                    .Where(x => x.HelpStatus == HelpStatus.Active)
                     // Map them to result
                     .Select(x => new Result
                     {
@@ -82,6 +82,7 @@ namespace Covida.Web.Features.Helps
                         {
                             Id = x.Author.Id,
                             Name = x.Author.Name,
+                            Address = x.Author.Address,
                             Location = x.Author.Location.ToPointD(),
                         },
                     });
