@@ -39,6 +39,11 @@ namespace Covida.Data.Postgre
                 }
                 #endregion
             }
+            modelBuilder.Entity<User>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<User>()
+                .Property(x => x.Id)
+                .ValueGeneratedOnAdd();
             #region Compound Primary Keys
             modelBuilder.Entity<HelpHasCategory>()
                 .HasKey(x => new
