@@ -23,6 +23,7 @@ namespace Covida.Data.Scaffold
 
         public override async Task Run()
         {
+            await ClearDatabase();
             await AddUsers();
             await AddHelpCategories();
             await AddHelps();

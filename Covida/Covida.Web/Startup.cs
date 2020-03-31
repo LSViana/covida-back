@@ -55,8 +55,7 @@ namespace Covida.Web
             }
             else if (HostEnvironment.IsDevelopment())
             {
-                services.AddPostgreProduction(Configuration);
-                //services.AddPostgreDevelopment(Configuration);
+                services.AddPostgreDevelopment(Configuration);
                 services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
             services.AddSignalR();
