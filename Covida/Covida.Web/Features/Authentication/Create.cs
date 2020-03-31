@@ -7,6 +7,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Covida.Infrastructure.Geometry;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Covida.Web.Features.Authentication
 {
@@ -47,6 +49,7 @@ namespace Covida.Web.Features.Authentication
                 // Create the user
                 var user = new User
                 {
+                    Id = db.Users.IgnoreQueryFilters().Max(x => x.Id) + 1,
                     Name = request.Name,
                     Longitude = request.Location.X,
                     Latitude = request.Location.Y,

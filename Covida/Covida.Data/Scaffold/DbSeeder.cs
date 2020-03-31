@@ -17,7 +17,7 @@ namespace Covida.Data.Scaffold
             DbContext = dbContext;
         }
 
-        protected async Task ClearDatabase()
+        protected virtual async Task ClearDatabase()
         {
             foreach (var entityType in DbContext.Model.GetEntityTypes())
             {

@@ -1,5 +1,6 @@
 ﻿using Covida.Core.Domain;
 using Covida.Data.Postgre;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,17 @@ namespace Covida.Data.Scaffold
             users = new List<User>();
             helpCategories = new List<HelpCategory>();
             helps = new List<Help>();
+        }
+
+        protected override async Task ClearDatabase()
+        {
+            DbContext.HelpHasCategories.RemoveRange(await DbContext.HelpHasCategories.IgnoreQueryFilters().ToListAsync());
+            DbContext.HelpItems.RemoveRange(await DbContext.HelpItems.IgnoreQueryFilters().ToListAsync());
+            DbContext.Messages.RemoveRange(await DbContext.Messages.ToListAsync());
+            DbContext.HelpCategories.RemoveRange(await DbContext.HelpCategories.IgnoreQueryFilters().ToListAsync());
+            DbContext.Helps.RemoveRange(await DbContext.Helps.IgnoreQueryFilters().ToListAsync());
+            DbContext.Users.RemoveRange(await DbContext.Users.IgnoreQueryFilters().ToListAsync());
+            await DbContext.SaveChangesAsync();
         }
 
         public override async Task Run()
