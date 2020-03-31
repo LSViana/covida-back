@@ -30,6 +30,7 @@ namespace Covida.Web.Middlewares.HttpExceptionHandling
             }
             catch (HttpException httpException)
             {
+                Console.Error.Write(httpException.StackTrace);
                 context.Response.StatusCode = httpException.StatusCode;
                 context.Response.ContentType = "application/json";
                 if (httpException.Details != null)
@@ -44,8 +45,9 @@ namespace Covida.Web.Middlewares.HttpExceptionHandling
                     await context.Response.WriteAsync(JsonConvert.SerializeObject(new ErrorInfo(ErrorMessages.UnknownErrorContactSupport)));
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.Error.Write(ex.StackTrace);
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 context.Response.ContentType = "application/json";
                 if (hostEnvironment.IsDevelopment())
