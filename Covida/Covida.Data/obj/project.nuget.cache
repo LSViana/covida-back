@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "40NBjGipwhrHpJCFgoiJf2Q5kj+rfncVnnHQPE6FPp185gZIlCpdZuUkIipDyWXl7uAS+KwA3+OIx0SgUd6vQg==",
+  "dgSpecHash": "CLCmbORYO3pBGP23ec/uEhzEV5I3UJr8smd5zMPvkb3mV7qI9z+hhHLIrLU2Hl5D2vaNOh2h2AuQr8tGLs+ueA==",
   "success": true,
   "projectFilePath": "D:\\Lucas Viana\\Development\\senai\\covida\\covida-back\\Covida\\Covida.Data\\Covida.Data.csproj",
   "expectedPackageFiles": [
@@ -23,12 +23,8 @@
     "C:\\Users\\lv201\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.3\\microsoft.extensions.primitives.3.1.3.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
-    "C:\\Users\\lv201\\.nuget\\packages\\nettopologysuite\\2.0.0\\nettopologysuite.2.0.0.nupkg.sha512",
-    "C:\\Users\\lv201\\.nuget\\packages\\nettopologysuite.io.postgis\\2.0.0\\nettopologysuite.io.postgis.2.0.0.nupkg.sha512",
     "C:\\Users\\lv201\\.nuget\\packages\\npgsql\\4.1.3\\npgsql.4.1.3.nupkg.sha512",
     "C:\\Users\\lv201\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\3.1.3\\npgsql.entityframeworkcore.postgresql.3.1.3.nupkg.sha512",
-    "C:\\Users\\lv201\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql.nettopologysuite\\3.1.3\\npgsql.entityframeworkcore.postgresql.nettopologysuite.3.1.3.nupkg.sha512",
-    "C:\\Users\\lv201\\.nuget\\packages\\npgsql.nettopologysuite\\4.1.3\\npgsql.nettopologysuite.4.1.3.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\lv201\\.nuget\\packages\\system.collections.immutable\\1.7.0\\system.collections.immutable.1.7.0.nupkg.sha512",
     "C:\\Users\\lv201\\.nuget\\packages\\system.componentmodel.annotations\\4.7.0\\system.componentmodel.annotations.4.7.0.nupkg.sha512",

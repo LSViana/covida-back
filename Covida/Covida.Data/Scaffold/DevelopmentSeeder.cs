@@ -1,6 +1,5 @@
 ﻿using Covida.Core.Domain;
 using Covida.Data.Postgre;
-using NetTopologySuite.Geometries;
 using System;
 using System.Collections.Generic;
 using System.Linq;

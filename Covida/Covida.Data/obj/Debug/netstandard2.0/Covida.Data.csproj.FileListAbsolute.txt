@@ -7,7 +7,6 @@ D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\bin\Debug
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\bin\Debug\netstandard2.0\Covida.Data.pdb
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\bin\Debug\netstandard2.0\Covida.Core.pdb
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\obj\Debug\netstandard2.0\Covida.Data.csproj.CoreCompileInputs.cache
-D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\obj\Debug\netstandard2.0\EFCoreNpgsqlNetTopologySuite.cs
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\obj\Debug\netstandard2.0\Covida.Data.csproj.CopyComplete
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\obj\Debug\netstandard2.0\Covida.Data.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Data\obj\Debug\netstandard2.0\Covida.Data.pdb

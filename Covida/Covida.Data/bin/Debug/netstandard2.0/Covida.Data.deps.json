@@ -11,8 +11,7 @@
         "dependencies": {
           "Covida.Core": "1.0.0",
           "NETStandard.Library": "2.0.3",
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "3.1.3",
-          "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": "3.1.3"
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "3.1.3"
         },
         "runtime": {
           "Covida.Data.dll": {}
@@ -208,28 +207,6 @@
           "Microsoft.NETCore.Platforms": "1.1.0"
         }
       },
-      "NetTopologySuite/2.0.0": {
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "runtime": {
-          "lib/netstandard2.0/NetTopologySuite.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
-          }
-        }
-      },
-      "NetTopologySuite.IO.PostGis/2.0.0": {
-        "dependencies": {
-          "NetTopologySuite": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/NetTopologySuite.IO.PostGis.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.0.0"
-          }
-        }
-      },
       "Npgsql/4.1.3": {
         "dependencies": {
           "System.Memory": "4.5.3",
@@ -256,30 +233,6 @@
           "lib/netstandard2.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
             "assemblyVersion": "3.1.3.0",
             "fileVersion": "3.1.3.0"
-          }
-        }
-      },
-      "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite/3.1.3": {
-        "dependencies": {
-          "Npgsql.EntityFrameworkCore.PostgreSQL": "3.1.3",
-          "Npgsql.NetTopologySuite": "4.1.3"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite.dll": {
-            "assemblyVersion": "3.1.3.0",
-            "fileVersion": "3.1.3.0"
-          }
-        }
-      },
-      "Npgsql.NetTopologySuite/4.1.3": {
-        "dependencies": {
-          "NetTopologySuite.IO.PostGis": "2.0.0",
-          "Npgsql": "4.1.3"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Npgsql.NetTopologySuite.dll": {
-            "assemblyVersion": "4.1.3.0",
-            "fileVersion": "4.1.3.0"
           }
         }
       },
@@ -391,9 +344,6 @@
       },
       "System.ValueTuple/4.5.0": {},
       "Covida.Core/1.0.0": {
-        "dependencies": {
-          "NetTopologySuite": "2.0.0"
-        },
         "runtime": {
           "Covida.Core.dll": {}
         }
@@ -539,20 +489,6 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
-    "NetTopologySuite/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3ajBClEI9wx2/DjjGmV52sHW1m52vLg8sdz1pJbTf5ySj1X90qehQs3v1DRwGo0F8UKj/Z2SjNhRN/6LroAkqg==",
-      "path": "nettopologysuite/2.0.0",
-      "hashPath": "nettopologysuite.2.0.0.nupkg.sha512"
-    },
-    "NetTopologySuite.IO.PostGis/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-f4PAE9VTUfM8w+SOlFcsvn5/S9e5SQywmEPsCMAVgfiemwHw9NKSB4Jnn4+U/jl5hN9tUutHxpHnOUx2Pqm6Ew==",
-      "path": "nettopologysuite.io.postgis/2.0.0",
-      "hashPath": "nettopologysuite.io.postgis.2.0.0.nupkg.sha512"
-    },
     "Npgsql/4.1.3": {
       "type": "package",
       "serviceable": true,
@@ -566,20 +502,6 @@
       "sha512": "sha512-OsuFPlLHx8fyZQOF6e1AOOZ5Wn93eMAGyMihTe/06WEfTy/a367XwU9xJR+sqfvwXKUy+fvLafgFVG0etLTklQ==",
       "path": "npgsql.entityframeworkcore.postgresql/3.1.3",
       "hashPath": "npgsql.entityframeworkcore.postgresql.3.1.3.nupkg.sha512"
-    },
-    "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite/3.1.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-9f785WxV2Jjgmb74Y3FFPFOzRRQaEXmMWWE+F+Ai2b6x3rXHNPgcL/Snq5V2QDJjGBG7ZXaT9VDoW33n2JqI8g==",
-      "path": "npgsql.entityframeworkcore.postgresql.nettopologysuite/3.1.3",
-      "hashPath": "npgsql.entityframeworkcore.postgresql.nettopologysuite.3.1.3.nupkg.sha512"
-    },
-    "Npgsql.NetTopologySuite/4.1.3": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-5ijy3AkLMKaE/bVLFNUZUcpkZp7UJAB5kHhuaiANwiUTT8KYLt2hOXndCd+uMOAflk2Ak3kkINOIHw6L6Z9aGQ==",
-      "path": "npgsql.nettopologysuite/4.1.3",
-      "hashPath": "npgsql.nettopologysuite.4.1.3.nupkg.sha512"
     },
     "System.Buffers/4.5.0": {
       "type": "package",

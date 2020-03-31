@@ -15,11 +15,8 @@ namespace Covida.Infrastructure.Definitions
 
         public async Task<PageResult<T>> GetResult(IQueryable<T> query)
         {
-            var itemsTotalTask = query.CountAsync();
-            var itemsTask = query.Skip(PageSize * (Page - 1)).Take(PageSize).ToArrayAsync();
-            await Task.WhenAll(itemsTask, itemsTotalTask);
-            var itemsTotal = itemsTotalTask.Result;
-            var items = itemsTask.Result;
+            var itemsTotal = await query.CountAsync();
+            var items = await query.Skip(PageSize * (Page - 1)).Take(PageSize).ToArrayAsync();
             return new PageResult<T>()
             {
                 Page = Page,

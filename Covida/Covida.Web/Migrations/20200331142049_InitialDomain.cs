@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using NetTopologySuite.Geometries;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Covida.Web.Migrations
@@ -9,9 +8,6 @@ namespace Covida.Web.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("Npgsql:PostgresExtension:postgis", ",,");
-
             migrationBuilder.CreateTable(
                 name: "HelpCategories",
                 columns: table => new
@@ -34,7 +30,8 @@ namespace Covida.Web.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true),
-                    Location = table.Column<Point>(nullable: true),
+                    Latitude = table.Column<double>(nullable: false),
+                    Longitude = table.Column<double>(nullable: false),
                     Address = table.Column<string>(nullable: true),
                     IsVolunteer = table.Column<bool>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
@@ -53,7 +50,8 @@ namespace Covida.Web.Migrations
                     CancelledAt = table.Column<DateTime>(nullable: true),
                     CancelledReason = table.Column<string>(nullable: true),
                     HelpStatus = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false),
+                    AuthorId = table.Column<int>(nullable: false),
+                    VolunteerId = table.Column<int>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true)
                 },
@@ -61,11 +59,17 @@ namespace Covida.Web.Migrations
                 {
                     table.PrimaryKey("PK_Helps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Helps_Users_UserId",
-                        column: x => x.UserId,
+                        name: "FK_Helps_Users_AuthorId",
+                        column: x => x.AuthorId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Helps_Users_VolunteerId",
+                        column: x => x.VolunteerId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,7 +123,7 @@ namespace Covida.Web.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Message",
+                name: "Messages",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -132,15 +136,15 @@ namespace Covida.Web.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Message", x => x.Id);
+                    table.PrimaryKey("PK_Messages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Message_Helps_HelpId",
+                        name: "FK_Messages_Helps_HelpId",
                         column: x => x.HelpId,
                         principalTable: "Helps",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Message_Users_UserId",
+                        name: "FK_Messages_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -158,18 +162,23 @@ namespace Covida.Web.Migrations
                 column: "HelpId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Helps_UserId",
+                name: "IX_Helps_AuthorId",
                 table: "Helps",
-                column: "UserId");
+                column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Message_HelpId",
-                table: "Message",
+                name: "IX_Helps_VolunteerId",
+                table: "Helps",
+                column: "VolunteerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_HelpId",
+                table: "Messages",
                 column: "HelpId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Message_UserId",
-                table: "Message",
+                name: "IX_Messages_UserId",
+                table: "Messages",
                 column: "UserId");
         }
 
@@ -182,7 +191,7 @@ namespace Covida.Web.Migrations
                 name: "HelpItems");
 
             migrationBuilder.DropTable(
-                name: "Message");
+                name: "Messages");
 
             migrationBuilder.DropTable(
                 name: "HelpCategories");

@@ -5,7 +5,6 @@ using Covida.Infrastructure.Geometry;
 using FluentValidation;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using NetTopologySuite.Geometries;
 using System;
 using System.Linq;
 using System.Threading;
@@ -40,7 +39,6 @@ namespace Covida.Web.Features.Helps
             public string CancelledReason { get; set; }
             public HelpStatus HelpStatus { get; set; }
             public UserResult User { get; set; }
-            public double CartesianDistance { get; set; }
             public string[] Categories { get; set; }
 
             public class UserResult
@@ -62,8 +60,6 @@ namespace Covida.Web.Features.Helps
 
             public async Task<PageResult<Result>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var requestPoint = new Point(request.X.Value, request.Y.Value);
-                requestPoint.SRID = Core.Domain.Constants.Location.DefaultSRID;
                 // Get all helps
                 var helpsQuery = db.Helps
                     .Include(x => x.Author)
@@ -88,8 +84,7 @@ namespace Covida.Web.Features.Helps
                                 Y = x.Author.Latitude,
                             },
                         },
-                    })
-                    .Where(x => x.CartesianDistance < request.MaxDistance);
+                    });
                 // Return the result
                 var results = await request.GetResult(helpsQuery);
                 return results;

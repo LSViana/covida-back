@@ -42,12 +42,8 @@ D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
-D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\NetTopologySuite.dll
-D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\NetTopologySuite.IO.PostGis.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Npgsql.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite.dll
-D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Npgsql.NetTopologySuite.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Covida.Core.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Covida.Data.dll
 D:\Lucas Viana\Development\senai\covida\covida-back\Covida\Covida.Web\bin\Debug\netcoreapp3.1\Covida.Infrastructure.dll

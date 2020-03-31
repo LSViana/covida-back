@@ -243,18 +243,6 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
-      "NetTopologySuite/2.0.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Memory": "4.5.3"
-        },
-        "compile": {
-          "lib/netstandard2.0/NetTopologySuite.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/NetTopologySuite.dll": {}
-        }
-      },
       "System.Buffers/4.4.0": {
         "type": "package",
         "compile": {
@@ -344,9 +332,6 @@
       "Covida.Core/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
-        "dependencies": {
-          "NetTopologySuite": "2.0.0"
-        },
         "compile": {
           "bin/placeholder/Covida.Core.dll": {}
         },
@@ -802,19 +787,6 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
-      ]
-    },
-    "NetTopologySuite/2.0.0": {
-      "sha512": "3ajBClEI9wx2/DjjGmV52sHW1m52vLg8sdz1pJbTf5ySj1X90qehQs3v1DRwGo0F8UKj/Z2SjNhRN/6LroAkqg==",
-      "type": "package",
-      "path": "nettopologysuite/2.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/NetTopologySuite.dll",
-        "lib/netstandard2.0/NetTopologySuite.xml",
-        "nettopologysuite.2.0.0.nupkg.sha512",
-        "nettopologysuite.nuspec"
       ]
     },
     "System.Buffers/4.4.0": {

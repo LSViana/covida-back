@@ -10,11 +10,5 @@ namespace Covida.Infrastructure.Definitions
     {
         public static bool IsBetween(this DateTime @this, DateTime dateTime1, DateTime dateTime2)
             => dateTime1 <= @this && @this <= dateTime2;
-
-        public static PointD ToPointD(this NetTopologySuite.Geometries.Point @this)
-            => new PointD((float)@this.X, (float)@this.Y);
-
-        public static NetTopologySuite.Geometries.Point ToPoint(this PointD @this)
-            => new NetTopologySuite.Geometries.Point(@this.X, @this.Y);
     }
 }

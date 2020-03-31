@@ -50,15 +50,13 @@ namespace Covida.Web
             services.AddCors();
             if (HostEnvironment.IsProduction())
             {
-                services.AddPostgre(Configuration);
+                services.AddPostgreProduction(Configuration);
                 services.AddScoped<DbSeeder<CovidaDbContext>, ProductionSeeder>();
             }
             else if (HostEnvironment.IsDevelopment())
             {
-                services.AddDbContext<CovidaDbContext>(x =>
-                {
-                    x.UseInMemoryDatabase("db");
-                }, ServiceLifetime.Transient);
+                services.AddPostgreProduction(Configuration);
+                //services.AddPostgreDevelopment(Configuration);
                 services.AddScoped<DbSeeder<CovidaDbContext>, DevelopmentSeeder>();
             }
             services.AddSignalR();

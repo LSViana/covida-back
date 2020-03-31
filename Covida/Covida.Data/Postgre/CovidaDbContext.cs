@@ -19,8 +19,6 @@ namespace Covida.Data.Postgre
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            // Ensuring database has PostGIS installed
-            modelBuilder.HasPostgresExtension("postgis");
             // Adding rules for all entitites
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {

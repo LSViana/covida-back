@@ -5,20 +5,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NetTopologySuite.Geometries;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Covida.Web.Migrations
 {
     [DbContext(typeof(CovidaDbContext))]
-    [Migration("20200329155026_InitialDomain")]
+    [Migration("20200331142049_InitialDomain")]
     partial class InitialDomain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Npgsql:PostgresExtension:postgis", ",,")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
@@ -28,6 +26,9 @@ namespace Covida.Web.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("CancelledAt")
                         .HasColumnType("timestamp without time zone");
@@ -44,12 +45,14 @@ namespace Covida.Web.Migrations
                     b.Property<int>("HelpStatus")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("VolunteerId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("VolunteerId");
 
                     b.ToTable("Helps");
                 });
@@ -160,7 +163,7 @@ namespace Covida.Web.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Message");
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Covida.Core.Domain.User", b =>
@@ -182,8 +185,11 @@ namespace Covida.Web.Migrations
                     b.Property<bool>("IsVolunteer")
                         .HasColumnType("boolean");
 
-                    b.Property<Point>("Location")
-                        .HasColumnType("geometry");
+                    b.Property<double>("Latitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("Name")
                         .HasColumnType("text");
@@ -195,11 +201,16 @@ namespace Covida.Web.Migrations
 
             modelBuilder.Entity("Covida.Core.Domain.Help", b =>
                 {
-                    b.HasOne("Covida.Core.Domain.User", "User")
+                    b.HasOne("Covida.Core.Domain.User", "Author")
                         .WithMany("Helps")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Covida.Core.Domain.User", "Volunteer")
+                        .WithMany("Answers")
+                        .HasForeignKey("VolunteerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Covida.Core.Domain.HelpHasCategory", b =>

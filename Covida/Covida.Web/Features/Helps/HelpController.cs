@@ -45,7 +45,7 @@ namespace Covida.Web.Features.Helps
         [HttpGet("answer/{helpId}")]
         public async Task<IActionResult> Answer([FromRoute] Guid helpId)
         {
-            var response = await mediator.Send(new Answer.Command { HelpId = helpId });
+            await mediator.Send(new Answer.Command { HelpId = helpId });
             return NoContent();
         }
 
@@ -59,7 +59,7 @@ namespace Covida.Web.Features.Helps
         [HttpGet("update-help-item/{helpItemId}/{complete}")]
         public async Task<IActionResult> UpdateHelpItem([FromRoute] Guid helpItemId, [FromRoute] bool complete)
         {
-            var response = await mediator.Send(new UpdateHelpItem.Command { HelpItemId = helpItemId, Complete = complete });
+            await mediator.Send(new UpdateHelpItem.Command { HelpItemId = helpItemId, Complete = complete });
             return NoContent();
         }
 
@@ -86,7 +86,7 @@ namespace Covida.Web.Features.Helps
         [HttpGet("finish/{helpId}")]
         public async Task<IActionResult> Finish([FromRoute] Guid helpId)
         {
-            var response = await mediator.Send(new FinishHelp.Command
+            await mediator.Send(new FinishHelp.Command
             {
                 HelpId = helpId,
             });
